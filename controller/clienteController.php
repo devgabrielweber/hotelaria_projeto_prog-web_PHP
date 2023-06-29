@@ -14,7 +14,6 @@ class clienteController
 
     public function salvar($dados)
     {
-
         try {
 
             if (!preg_match("/^[a-zA-Z-' ]*$/", $dados['nome'])) {
