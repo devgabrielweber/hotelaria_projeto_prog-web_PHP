@@ -3,7 +3,7 @@
 
 <head>
     <title>Exemplo de Rodapé com Estilo de Fonte</title>
-    <link rel="stylesheet" href="caminho-para-o-arquivo/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="caminho-para-o-arquivo/bootstrap.min.css">-->
     <style>
     html,
     body {
@@ -46,20 +46,17 @@
 
 <body>
     <div>
-
         <div class="wrapper">
             <div class="content">
                 <!-- Seu conteúdo vai aqui -->
             </div>
-
-            <footer class="text-center">
+            <footer class="text-center navbar-fixed-bottom">
                 <div>
                     <p class="footer-text"><strong>Hotelaria da Tia | Chapecó/SC</strong></p>
                     <p class="footer-text">Fundadores: Weber, Lidio e Hiury</p>
                 </div>
             </footer>
         </div>
-
         <script src="caminho-para-o-arquivo/bootstrap.min.js"></script>
 </body>
 

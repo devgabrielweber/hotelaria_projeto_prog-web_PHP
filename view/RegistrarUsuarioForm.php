@@ -2,12 +2,19 @@
 include '../controller/LoginController.php';
 
 session_start();
+
 $login = new LoginController();
+
 
 if (!empty($_POST)) {
     $login->salvar($_POST);
     $_SESSION['dados'] = "";
     header("location: " . $_SESSION['url']);
+}
+
+if (!empty($_GET['id'])) {
+    $data = $login->buscar($_GET['id']);
+    //var_dump($data);
 }
 
 $dados = !empty($_SESSION['dados']) ? $_SESSION['dados'] : "";
@@ -52,9 +59,6 @@ $dados = !empty($_SESSION['dados']) ? $_SESSION['dados'] : "";
 <form action="RegistrarUsuarioForm.php" method="post">
     <div class="container">
         <h3 class="mb-4">Formulário Registrar Usuário</h3>
-        <p class="text-danger">
-            <?php echo (!empty($_SESSION["msg"]) ? $_SESSION["msg"] : ""); ?>
-        </p>
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" class="form-control" name="nome" value="<?php echo (!empty($dados['nome']) ? $dados['nome'] : ""); ?>">
@@ -79,7 +83,7 @@ $dados = !empty($_SESSION['dados']) ? $_SESSION['dados'] : "";
             <label for="c_senha" class="form-label">Confirmar Senha:</label>
             <input type="password" class="form-control" name="c_senha">
         </div>
-        <button type="submit" class="btn btn-primary col-5">Cadastrar</button>
+        <button type="submit" class="btn btn-primary col-5" onclick="alert('Cadastrado com Sucesso!')">Cadastrar</button>
         <a href="login.php" class="btn btn-secondary col-5">Voltar</a>
     </div>
 </form>

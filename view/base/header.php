@@ -63,6 +63,12 @@ $url_projeto = '/hotelariadatia';
                     <li class="nav-item">
                         <a class="nav-link" href="/hotelariadatia/view/funcionarioList.php">Funcionários</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/hotelariadatia/view/manutencaoList.php">Manutenção</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/hotelariadatia/view/usuarioList.php">Usuários</a>
+                    </li>
                 </ul>
 
             </div>

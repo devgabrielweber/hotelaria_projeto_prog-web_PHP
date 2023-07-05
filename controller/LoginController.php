@@ -63,4 +63,9 @@ class LoginController
             $_SESSION['msg'] = $e->getMessage();
         }
     }
+
+    public function buscar($id)
+    {
+        return $this->model->buscar($this->table, $id);
+    }
 }

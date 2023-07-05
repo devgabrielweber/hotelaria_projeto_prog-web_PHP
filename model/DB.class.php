@@ -74,7 +74,6 @@ class BD
         $sql = "SELECT * FROM $nome_tabela;";
         $st = $conn->prepare($sql);
         $st->execute();
-
         return $st->fetchAll(PDO::FETCH_CLASS);
     }
 

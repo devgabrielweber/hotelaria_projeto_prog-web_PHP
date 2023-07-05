@@ -7,19 +7,6 @@ include "base/header.php";
 
 $quartos = new quartosController();
 
-
-if (!empty($_POST)) {
-
-    if (empty($_POST['id'])) {
-        $quartos->salvar($_POST);
-    } else {
-        $quartos->atualizar($_POST);
-    }
-
-    //  header("location: " . $_SESSION['url']);
-}
-
-
 if (!empty($_GET['id'])) {
     $data = $quartos->buscar($_GET['id']);
     //var_dump($data);
@@ -38,70 +25,11 @@ if (!empty($_POST)) {
 }
 ?>
 
-<script>
-function getid() {
-    let elem = document.getElementById('id')
-    $_GET['id'] = elem;
-}
-</script>
-<div class="d-flex w-100 justify-content-center">
-    <div class="d-flex w-50 justify-content-center">
-        <div class="d-flex justify-content-center mt-5 col-5">
-            <form action="quartosList.php" method="post">
-                <h3 class="mb-4">Cadastrar Quarto</h3>
-                <input type="hidden" name="id" value="<?php echo (!empty($data->id) ? $data->id : "") ?>" />
-                <div class="mb-3">
-                    <label for="">Número:</label>
-                    <input type="text" name="num" value="<?php echo (!empty($data->num) ? $data->num : "") ?>"><br>
-                </div>
-                <div class="mb-3">
-                    <label for="">Bloco:</label>
-                    <input type="text" name="bloco"
-                        value="<?php echo (!empty($data->bloco) ? $data->bloco : "") ?>"><br>
-                </div>
-                <div class="mb-3">
-                    <label for="">Qtd. Camas: </label>
-                    <input type="text" name="camas"
-                        value="<?php echo (!empty($data->camas) ? $data->camas : "") ?>"><br>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    Salvar </button><br>
-            </form>
-        </div>
 
-        <div class="d-flex justify-content-center mt-5 col-6" style="width: 40%;">
-            <form action="quartosList.php" method="post">
-                <h3 class="mb-3">Atualizar Quarto</h3>
-                <div class="mb-3">
-                    <label for="id">ID: </label>
-                    <input type="text" name="id" value="<?php echo (!empty($data->id) ? $data->id : "") ?> " /><br>
-                </div>
-                <div class="mb-3">
-                    <label for="">Número:</label>
-                    <input type="text" name="num" value="<?php echo (!empty($data->num) ? $data->num : "") ?>"><br>
-                </div>
-                <div class="mb-3">
-                    <label for="">Bloco:</label>
-                    <input type="text" name="bloco"
-                        value="<?php echo (!empty($data->bloco) ? $data->bloco : "") ?>"><br>
-                </div>
-
-                <div class="mb-3">
-                    <label for="">Qtd. Camas: </label>
-                    <input type="text" name="camas"
-                        value="<?php echo (!empty($data->camas) ? $data->camas : "") ?>"><br>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    Atualizar </button><br>
-            </form>
-        </div>
-    </div>
-</div>
 <div class="p-5 w-100 d-flex justify-content-center">
-    <p style="color:red;">
-        <?php echo (!empty($_SESSION["msg"]) ? $_SESSION["msg"] : "") ?>
-    </p>
-    <h3 style="margin-bottom: -3rem;">Listagem:</h3>
+    <h3 style="margin-bottom: -3rem;">Listagem de Quartos:</h3>
+</div>
+<div class="d-flex justify-content-center">
 </div>
 <div class="d-flex w-100 justify-content-center">
     <div class="d-flex w-50 justify-content-center flex-wrap">
@@ -113,8 +41,9 @@ function getid() {
                     <option value="bloco">Bloco</option>
                 </select>
                 <label class="p-2">Valor</label>
-                <input type="text" name="valor" placeholder="Pesquisar" />
+                <input type="text" name="valor" placeholder="Pesquisar" class="form-control" />
                 <button type="submit" class="btn btn-primary">Buscar</button>
+                <a class="btn btn-tertiary" href="./quartosForm.php">Cadastrar</a>
             </div>
         </form>
         <table border="1" style="margin-bottom:3rem;">
@@ -134,11 +63,10 @@ function getid() {
                 echo "<td style='padding-left: 1rem; padding-right: 1rem;'>" . $item->camas . "</td>";
                 echo "<td style='padding-left: 1rem; padding-right: 1rem;'>" . $item->bloco . "</td>";
                 echo "<td><a onclick='return confirm(\"Deseja Excluir? \")' href='quartosList.php?id=$item->id'>Deletar</a></td>";
+                echo "<td><a href='quartosForm.php?id=$item->id'>Editar</a></td>";
                 echo "<tr>";
             }
             ?>
         </table>
     </div>
 </div>
-<?php
-//include "base/rodape.php";
